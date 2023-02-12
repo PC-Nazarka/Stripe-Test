@@ -18,7 +18,7 @@
     var buyButton = document.getElementById('buy-button')
     var itemId = document.getElementById('item-id').innerText
     buyButton.addEventListener('click', function() {
-        fetch(`{% url 'items:detail' ${itemId} %}`, {method: 'GET'})
+        fetch(`/buy/${itemId}/`, {method: 'GET'})
         .then(response => response.json())
         .then(session => stripe.redirectToCheckout({ sessionId: session.id }))
     });

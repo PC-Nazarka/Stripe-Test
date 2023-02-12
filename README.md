@@ -36,3 +36,9 @@ docker-compose exec django python manage.py createsuperuser
 ```bash
 docker-compose run django python manage.py runscript fill_sample_data
 ```
+
+### Выполненные бонусные задачи
+
+- запуск, использую docker
+- использование environment variables
+- просмотр Django Моделей в Django Admin панели
