@@ -1,3 +1,5 @@
+import os
+
 import stripe
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
@@ -7,7 +9,7 @@ from django.views.generic.detail import DetailView
 
 from . import models
 
-stripe.api_key = "sk_test_4eC39HqLyjWDarjtT1zdp7dc"
+stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
 
 class DetailItem(DetailView):
@@ -19,7 +21,7 @@ class DetailItem(DetailView):
 class BuyItem(View):
 
     def get(self, request, *args, **kwargs):
-        scheme = request.is_secure() and "https" or "http"
+        scheme = "https" if request.is_secure() else "http"
         url = f'{scheme}://{request.get_host()}/'
         item = get_object_or_404(
             models.Item.objects.all(),

@@ -18,6 +18,7 @@ services:
       - ./server:/server
     environment:
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
     ports:
       - "8000:8000"
     command: python manage.py runserver 0.0.0.0:8000
