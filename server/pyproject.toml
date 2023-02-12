@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "stripe_test"
+version = "0.1.0"
+description = "My new django project"
+authors = ["ZZaRRyaDD <example@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10.5"
+watchfiles = "0.16.1"
+django = "3.2.16"
+psycopg2-binary = "2.9.5"
+django-extensions = "3.2.1"
+dj-database-url = "1.0.0"
+stripe = "^5.1.1"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "4.0.1"
+flake8-isort = "4.2.0"
+factory-boy = "3.2.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

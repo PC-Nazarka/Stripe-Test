@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <div id="item-id" style="display: none;">{{ item.id }}</div>
+    <h2>{{ item.name }}</h2>
+    <p>Описание: {{ item.description }}</p>
+    <div>Цена: {{ item.price }}</div>
+    <button id="buy-button">Buy</button>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+    var apiKey = 'pk_test_a9nwZVa5O7b0xz3lxl318KSU00x1L9ZWsF'
+    var stripe = Stripe(apiKey)
+    var buyButton = document.getElementById('buy-button')
+    var itemId = document.getElementById('item-id').innerText
+    buyButton.addEventListener('click', function() {
+        fetch(`{% url 'items:detail' ${itemId} %}`, {method: 'GET'})
+        .then(response => response.json())
+        .then(session => stripe.redirectToCheckout({ sessionId: session.id }))
+    });
+</script>
+{% endblock %}
