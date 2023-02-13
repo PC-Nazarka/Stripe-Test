@@ -1,8 +1,7 @@
-from apps.purchases.factories import ItemFactory
+from apps.purchases.factories import OrderFactory
 
-COUNT_ITEMS = 3
+COUNT_ORDERS = 3
 
 
 def run():
-    """Generate example data."""
-    ItemFactory.create_batch(size=COUNT_ITEMS)
+    OrderFactory.create_batch(size=COUNT_ORDERS)

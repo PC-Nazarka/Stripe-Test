@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "stripe_test"
 version = "0.1.0"
-description = "My new django project"
+description = "Test task"
 authors = ["ZZaRRyaDD <example@gmail.com>"]
 
 [tool.poetry.dependencies]

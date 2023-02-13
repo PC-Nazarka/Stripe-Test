@@ -1,6 +1,8 @@
-from factory import Faker, django
+from factory import Faker, django, post_generation
 
-from apps.purchases.models import Item
+from apps.purchases.models import Item, Order
+
+COUNT_ITEMS = 5
 
 
 class ItemFactory(django.DjangoModelFactory):
@@ -21,3 +23,18 @@ class ItemFactory(django.DjangoModelFactory):
     class Meta:
         model = Item
         django_get_or_create = ["name"]
+
+
+class OrderFactory(django.DjangoModelFactory):
+
+    @post_generation
+    def items(self, create, extracted, **kwargs):
+        if not create:
+            return
+        items = extracted if extracted is not None else (
+            ItemFactory() for _ in range(COUNT_ITEMS)
+        )
+        self.items.add(*items)
+
+    class Meta:
+        model = Order

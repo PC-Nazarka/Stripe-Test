@@ -2,10 +2,13 @@
 
 {% block content %}
 <div>
-    <div id="url" data-url="{% url 'items:buy-item' item.id %}"></div>
-    <h2>{{ item.name }}</h2>
-    <p>Описание: {{ item.description }}</p>
-    <div>Цена: {{ item.price }}</div>
+    <div id="url" data-url="{% url 'items:buy-order' order.id %}"></div>
+    <h1>Заказ</h1>
+    {% for order_item in order.items.all %}
+        <h2>{{ order_item.name }}</h2>
+        <p>Описание: {{ order_item.description }}</p>
+        <div>Цена: {{ order_item.price }}</div>
+    {% endfor %}
     <button id="buy-button">Buy</button>
 </div>
 {% endblock %}
